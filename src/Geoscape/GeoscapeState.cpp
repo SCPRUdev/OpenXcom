@@ -406,6 +406,16 @@ GeoscapeState::GeoscapeState() : _pause(false), _zoomInEffectDone(false), _zoomO
 
 	_txtSlacking->setAlign(ALIGN_RIGHT);
 
+	if (!_game->getMod()->getNewBaseUnlockResearch().empty())
+	{
+		bool newBasesUnlocked = _game->getSavedGame()->isResearched(_game->getMod()->getNewBaseUnlockResearch(), true);
+		if (!newBasesUnlocked)
+		{
+			_txtFunds->setVisible(false);
+			_btnGraphs->setVisible(false);
+		}
+	}
+
 	if (Options::showFundsOnGeoscape)
 	{
 		_txtHour->setY(_txtHour->getY()+6);
