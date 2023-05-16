@@ -34,7 +34,7 @@ class ExtendedGeoscapeLinksState : public State
 {
 private:
 	TextButton *_btnOk;
-	TextButton *_btnFunding, *_btnTechTree, *_btnGlobalResearch, *_btnGlobalProduction, *_btnUfoTracker, *_btnPilotExp, *_btnNotes, *_btnMusic;
+	TextButton *_btnFunding, *_btnTechTree, *_btnGlobalResearch, *_btnGlobalProduction, *_btnUfoTracker, *_btnPilotExp, *_btnNotes, *_btnMusic, *_btnSummary;
 	TextButton *_btnTest;
 	Window *_window;
 	Text *_txtTitle;
@@ -46,6 +46,7 @@ public:
 	~ExtendedGeoscapeLinksState() = default;
 	/// Handlers for clicking the buttons.
 	void btnFundingClick(Action* action);
+	void btnSummaryClick(Action* action);
 	void btnTechTreeClick(Action* action);
 	void btnGlobalResearchClick(Action* action);
 	void btnGlobalProductionClick(Action* action);

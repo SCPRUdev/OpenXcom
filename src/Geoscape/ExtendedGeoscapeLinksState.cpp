@@ -19,6 +19,7 @@
 
 #include "ExtendedGeoscapeLinksState.h"
 #include "FundingState.h"
+#include "SummaryState.h"
 #include "GeoscapeState.h"
 #include "../Engine/Game.h"
 #include "../Engine/Action.h"
@@ -43,26 +44,28 @@ ExtendedGeoscapeLinksState::ExtendedGeoscapeLinksState(GeoscapeState* parent) : 
 
 	// Create objects
 	_window = new Window(this, 256, 180, 32, 10, POPUP_BOTH);
-	_txtTitle = new Text(220, 17, 50, 33);
+	_txtTitle = new Text(220, 17, 50, 17);
 	if (Options::oxceFatFingerLinks)
 	{
-		_btnFunding = new TextButton(116, 25, 44, 50);
-		_btnTechTree = new TextButton(116, 25, 161, 50);
-		_btnGlobalResearch = new TextButton(116, 25, 44, 76);
-		_btnGlobalProduction = new TextButton(116, 25, 161, 76);
-		_btnUfoTracker = new TextButton(116, 25, 44, 102);
-		_btnPilotExp = new TextButton(116, 25, 161, 102);
-		_btnNotes = new TextButton(116, 25, 44, 128);
-		_btnMusic = new TextButton(116, 25, 161, 128);
-		_btnTest = new TextButton(116, 25, 44, 154);
-		_btnOk = new TextButton(116, 25, 161, 154);
+		_btnFunding = new TextButton(116, 25, 44, 37);
+		_btnTechTree = new TextButton(116, 25, 161, 37);
+		_btnGlobalResearch = new TextButton(116, 25, 44, 63);
+		_btnGlobalProduction = new TextButton(116, 25, 161, 63);
+		_btnSummary = new TextButton(116, 25, 44, 89);
+		_btnUfoTracker = new TextButton(116, 25, 161, 89);
+		_btnPilotExp = new TextButton(116, 25, 44, 115);
+		_btnNotes = new TextButton(116, 25, 161, 115);
+		_btnMusic = new TextButton(116, 25, 44, 141);
+		_btnTest = new TextButton(116, 25, 161, 141);
+		_btnOk = new TextButton(116, 25, 44, 167);
 	}
 	else
 	{
-		_btnFunding = new TextButton(220, 12, 50, 50);
-		_btnTechTree = new TextButton(220, 12, 50, 63);
-		_btnGlobalResearch = new TextButton(220, 12, 50, 76);
-		_btnGlobalProduction = new TextButton(220, 12, 50, 89);
+		_btnFunding = new TextButton(220, 12, 50, 37);
+		_btnTechTree = new TextButton(220, 12, 50, 50);
+		_btnGlobalResearch = new TextButton(220, 12, 50, 63);
+		_btnGlobalProduction = new TextButton(220, 12, 50, 76);
+		_btnSummary = new TextButton(220, 12, 50, 89);
 		_btnUfoTracker = new TextButton(220, 12, 50, 102);
 		_btnPilotExp = new TextButton(220, 12, 50, 115);
 		_btnNotes = new TextButton(220, 12, 50, 128);
@@ -82,6 +85,7 @@ ExtendedGeoscapeLinksState::ExtendedGeoscapeLinksState(GeoscapeState* parent) : 
 	add(_btnTechTree, "button", "oxceLinks");
 	add(_btnGlobalResearch, "button", "oxceLinks");
 	add(_btnGlobalProduction, "button", "oxceLinks");
+	add(_btnSummary, "button", "oxceLinks");
 	add(_btnUfoTracker, "button", "oxceLinks");
 	add(_btnPilotExp, "button", "oxceLinks");
 	add(_btnNotes, "button", "oxceLinks");
@@ -103,6 +107,9 @@ ExtendedGeoscapeLinksState::ExtendedGeoscapeLinksState(GeoscapeState* parent) : 
 
 	_btnFunding->setText(tr("STR_FUNDING_UC"));
 	_btnFunding->onMouseClick((ActionHandler)&ExtendedGeoscapeLinksState::btnFundingClick);
+
+	_btnSummary->setText(tr("STR_SUMMARY_GEOSCAPE"));
+	_btnSummary->onMouseClick((ActionHandler)&ExtendedGeoscapeLinksState::btnSummaryClick);
 
 	std::string tmp = tr("STR_TECH_TREE_VIEWER");
 	Unicode::upperCase(tmp);
@@ -150,6 +157,12 @@ void ExtendedGeoscapeLinksState::btnFundingClick(Action *)
 {
 	_game->popState();
 	_game->pushState(new FundingState);
+}
+
+void ExtendedGeoscapeLinksState::btnSummaryClick(Action*)
+{
+	_game->popState();
+	_game->pushState(new SummaryState);
 }
 
 void ExtendedGeoscapeLinksState::btnTechTreeClick(Action *)
