@@ -139,6 +139,11 @@ void MedikitView::updateSelectedPart()
 			_selectedPart = i;
 			break;
 		}
+		else
+		{
+			_selectedPart = i;
+			break;
+		}
 	}
 }
 
